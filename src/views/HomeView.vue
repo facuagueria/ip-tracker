@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col h-screen max-h-screen">
-    <!--    Search / Results-->
+    <!-- Search / Results -->
     <div
-      class="z-20 bg-hero-pattern flex justify-center relative px-4 pt-8 pb-32"
+      class="z-20 flex justify-center relative bg-hero-pattern bg-cover px-4 pt-8 pb-32"
     >
       <!-- Search Input -->
       <div class="w-full max-w-screen-sm">
-        <h1 class="text-white text-center">IP Address Tracker</h1>
+        <h1 class="text-white text-center text-3xl pb-4">IP Address Tracker</h1>
         <div class="flex">
           <input
             v-model="queryIp"
@@ -17,14 +17,15 @@
           />
           <i
             @click="getIpInfo"
-            class="cursor-pointer bg-black text-white px-4 rounded-tr-md rounded-br-md flex items-center fa-solid fa-chevron-right"
-          />
+            class="cursor-pointer bg-black text-white px-4 rounded-tr-md rounded-br-md flex items-center fas fa-chevron-right"
+          ></i>
         </div>
       </div>
-      <!--      IP Info-->
-      <IPInfo v-if="ipInfo" :ipInfo="ipInfo" />
+      <!-- IP Info -->
+      <IPInfo v-if="ipInfo" v-bind:ipInfo="ipInfo" />
     </div>
-    <!--    Map -->
+
+    <!-- Map -->
     <div id="mapid" class="h-full z-10"></div>
   </div>
 </template>
@@ -67,7 +68,7 @@ export default {
           `https://geo.ipify.org/api/v2/country,city?apiKey=at_9UBJVPLMoPnvMmt0g4ULtXIP4O4BH&ipAddress=${queryIp.value}`
         );
         const result = data.data;
-        console.log(result);
+
         ipInfo.value = {
           address: result.ip,
           state: result.location.region,
